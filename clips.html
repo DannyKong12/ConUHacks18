@@ -36,12 +36,9 @@
       </ul>
       <form class="navbar-form navbar-left">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" id = "form1">
-
+          <input type="text" class="form-control" placeholder="Search">
           <span class="input-group-btn">
-            <form action = "javascript:Test()", id = "form1"  placeholder = "2018-01-14">
-            <button type="button" onclick="javascript:Test()"  class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </form>
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
           </span>
         </div>
       </form>
@@ -51,8 +48,14 @@
    <!-- Page Content -->
   <div class="container">
     <div class="row text-left text-lg-left">
+      <form id = "form1" action="javascript:Test()">
+Date : <input type="text" name="FirstName" value="2018-01-13"><br>
+<input type="submit" value="Submit">
+</form>
+      <div class="col-lg-4 col-md-4 col-xs-6" style="margin: 0 2em;">
+        <div class="panel-start", id = "panel-start">
 
-      <!-- <div class="col-lg-4 col-md-4 col-xs-6" style="margin: 0 2em;">
+        </div>
 
         <a class="video-thumbnail-li" href="video.html?id=0">
           <canvas class="img-thumbnail"></canvas>
@@ -60,18 +63,11 @@
           <video class="video-thumbnail img-thumbnail" controls="controls" preload="metadata">
             <source src="videos/goal0.mp4" type="video/mp4">
           </video>
-      </div> -->
-      <div class="panel-start", id = "panel-start">
-
       </div>
 
     </div>
 
   </div>
-
-
-
-
 
   <div class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
@@ -80,7 +76,6 @@
 </div>
 <script type="text/javascript">
 
-<!--
   var serverAPI = "http://localhost/sports.gne?jsoncallback=?"
   $.getJSON( serverAPI, { name: "Time", time: "2pm" } )
   .done(function( json ) {
@@ -95,17 +90,12 @@
 
   function Test(){
 
-
   var x = document.getElementById("form1")
-alert(x);
-console.log(x);
 
-  date = x['value'];
-
+  date = x.elements[0].value;
 
   httpGet();
   }
-
   function httpGet()
   {
     url = "http://conu.astuce.media/api/sports/football/events?format=json&Affiliation=17435833f1ed42848320a80f013bbb3f&Season=84f210d08e644c6e89e4a80f013cf46b&Round=78c0b1ccd2ed45609ba2a80f013cf471&LevelOfDetail=medium&StartDateTimeOn=" + date
