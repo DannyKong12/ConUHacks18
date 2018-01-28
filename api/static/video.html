@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Awesome Sports">
+  <meta name="author" content="Korhan Akcura" >
+  <title>Awesome Sports</title>
+
+  <link rel="icon" href="images/favicon.ico">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/master.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#" class="navbar-brand">AwesomeSports</a>
+    </div>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Main</a></li>
+        <li class="active"><a href="clips.html">Clips</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="frame">
+      <div class="video_container">
+        <video id="video" class="playing" width="600" height="450" preload autoplay loop muted controls="auto">
+          <source src="videos/goal0.mp4" type="video/mp4">
+        </video>
+        <canvas id="canvas" class="playing" width="600" height="450"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2018 - Awesome Sports</p>
+    </div>
+</div>
+
+  <!-- Load JS at the end -->
+  <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/libs/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+  <script>
+    var serverAPI = "http://localhost/sports.gne?jsoncallback=?"
+    $.getJSON( serverAPI, { name: "Time", time: "2pm" } )
+    .done(function( json ) {
+      console.log( "JSON Data: " + json.users[ 3 ].name );
+    })
+    .fail(function( jqxhr, textStatus, error ) {
+      var err = textStatus + ", " + error;
+      console.log( "Request Failed: " + err );
+    });
+  </script>
+
+</body>
+</html>
