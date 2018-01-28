@@ -44,7 +44,7 @@ videoout = "goal1.mp4"
 
 cap = cv.VideoCapture(filepath)
 counter = 0
-def clip(start):
+def clip(start, duration=20):
     while(cap.isOpened()):
         ret, frame = cap.read()
         try:
@@ -60,7 +60,7 @@ def clip(start):
             if time == start_time:
                 counter+=1
                 if counter == 5:
-                    subprocess.run(["ffmpeg", "-ss", a, "-i", videoname, "-c", "copy", "-t", "20", videoout])
+                    subprocess.run(["ffmpeg", "-ss", a, "-i", videoname, "-c", "copy", "-t", str(duration), videoout])
                     print("You finally did it you dumbass fuck")
                     break
             else:
