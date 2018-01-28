@@ -22,6 +22,8 @@ video, canvas {
 
 video.video-thumbnail {
 	pointer-events: none;
+	width:300px;
+	height:150px;
 }
 
 .video_container {
