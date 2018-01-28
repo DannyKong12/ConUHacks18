@@ -14,10 +14,10 @@ video, canvas {
 	position: absolute;
 }
 
-.info {
-	padding-top:450px;
+video.video-thumbnail {
+    pointer-events: none;
 }
 
-.dg.ac {
-	display:none;
+a.video-thumbnail-link {
+    pointer-events: auto;
 }
