@@ -1,100 +1,124 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Awesome Sports">
-  <meta name="author" content="Korhan Akcura" >
-  <title>Awesome Sports</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Awesome Sports">
+	<meta name="author" content="Korhan Akcura" >
+	<title>Awesome Sports</title>
 
-  <link rel="icon" href="images/favicon.ico">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/master.css" rel="stylesheet">
+	<link rel="icon" href="images/favicon.ico">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/master.css" rel="stylesheet">
 
 </head>
 <body>
 
-  <nav class="navbar navbar-inverse">
-  <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="index.html" class="navbar-brand">AwesomeSports</a>
-    </div>
-    <!-- Collection of nav links, forms, and other content for toggling -->
-    <div id="navbarCollapse" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="index.html">Main</a></li>
-        <li class="active"><a href="clips.html">Clips</a></li>
-        <li><a href="about.html">About Us</a></li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" onclick="window.location.href = 'video.html?id=0';"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-        </div>
-      </form>
-    </div>
-  </nav>
+	<nav class="navbar navbar-inverse">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="index.html" class="navbar-brand">AwesomeSports</a>
+		</div>
+		<!-- Collection of nav links, forms, and other content for toggling -->
+		<div id="navbarCollapse" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">Main</a></li>
+				<li class="active"><a href="clips.html">Clips</a></li>
+				<li><a href="about.html">About Us</a></li>
+			</ul>
+			<form class="navbar-form navbar-left">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" onclick="window.location.href = 'video.html?id=0';"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+			</form>
+		</div>
+	</nav>
 
-  <div class="container">
+	<div class="container">
 
-  <div class="row">
-    <div class="col-xs-12">
-        <div class="frame">
-          <div class="video_container">
-            <video id="video" class="playing" width="853" height="480" preload autoplay loop controls="controls">
-              <source src="videos/goal0.mp4" type="video/mp4">
-            </video>
-            <canvas id="canvas" class="playing" width="853" height="460"></canvas>
-          </div>
-        </div>
-    </div>
-  </div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="frame">
+					<div class="video_container">
+						<video id="video" class="playing" width="853" height="480" preload autoplay loop controls="controls">
+							<source src="videos/goal0.mp4" type="video/mp4">
+							</video>
+							<canvas id="canvas" class="playing" width="853" height="460"></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div id="events_container" class="feed_container pull-right"></div>
+				</div>
+			</div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <div id="feed_container" class="feed_container"></div>
-    </div>
-  </div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div id="feed_container" class="feed_container"></div>
+				</div>
+			</div>
 
-  </div>
+		</div>
 
-  <div class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text pull-left">© 2018 - Awesome Sports</p>
-    </div>
-</div>
+		<div class="navbar navbar-inverse navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text pull-left">© 2018 - Awesome Sports</p>
+			</div>
+		</div>
 
-  <!-- Load JS at the end -->
-  <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-  <script>
-    var serverAPI = "/api/video/00:41:02"
-    $.getJSON( serverAPI )
-    .done(function( json ) {
-      var titles = Object.keys(json);
-      var title = "";
-      var feed_container = $("#feed_container");
-      feed_container.empty()
-      for (var i in titles) {
-        title = titles[i];
-        feed_container.append("<div><span class='feed_title'>"+title+" : </span><span class='feed_value'>"+json[title]+"</span></div>");
-      }
-      console.log( "Feed successful.");
-    })
-    .fail(function( jqxhr, textStatus, error ) {
-      var err = textStatus + ", " + error;
-      console.log( "Request Failed: " + err );
-    });
-  </script>
+		<!-- Load JS at the end -->
+		<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+		<script>
+			var videosAPIURL = "/api/videos"
+			$.getJSON( videosAPIURL )
+			.done(function( json ) {
+				var events_container = $("#events_container");
+				events_container.empty();
+				var files = json.files;
+				var file = "";
+				var time = 0;
+				for (var i in files) {
+					file = files[i];
+					time = file.split('.')[0].slice(-4).match(/.{1,2}/g).join(':');
+					events_container.append("<div><span class='feed_title'>"+time+" : </span><span class='feed_value'>"+file+"</span><input type='hidden' name='video' value='"+file+"''></div>");
+					console.log( files[i] );
+				}
+				console.log( "Feed successful.");
+			})
+			.fail(function( jqxhr, textStatus, error ) {
+				var err = textStatus + ", " + error;
+				console.log( "Request Failed: " + err );
+			});
 
-</body>
-</html>
+			var videoAPIURL = "/api/video/00:41:02"
+			$.getJSON( videoAPIURL )
+			.done(function( json ) {
+				var titles = Object.keys(json);
+				var title = "";
+				var feed_container = $("#feed_container");
+				feed_container.empty();
+				for (var i in titles) {
+					title = titles[i];
+					feed_container.append("<div><span class='feed_title'>"+title+" : </span><span class='feed_value'>"+json[title]+"</span></div>");
+				}
+				console.log( "Feed successful.");
+			})
+			.fail(function( jqxhr, textStatus, error ) {
+				var err = textStatus + ", " + error;
+				console.log( "Request Failed: " + err );
+			});
+		</script>
+
+	</body>
+	</html>

@@ -10,6 +10,8 @@ body {
 
 .container {
 	margin-left: 0;
+	margin-right: 0;
+	width: 100%;
 }
 
 video, canvas {
@@ -19,7 +21,7 @@ video, canvas {
 }
 
 video.video-thumbnail {
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .video_container {
@@ -27,23 +29,27 @@ video.video-thumbnail {
 }
 
 a.video-thumbnail-link {
-    pointer-events: auto;
+	pointer-events: auto;
 }
 
 video::-webkit-media-controls-panel {
-    display: flex !important;
-    opacity: 1 !important;
+	display: flex !important;
+	opacity: 1 !important;
+}
+
+.feed_title {
+	font-weight: bold;
 }
 
 .feed_container {
 	margin-top:20px;
-    border: 2px solid #483D8B;
-    color:#9d9d9d;
-    background-color:#080808;
-    border-radius: 7px;
-    width:853px;
+	border: 2px solid #483D8B;
+	color:#9d9d9d;
+	background-color:#080808;
+	border-radius: 7px;
+	width:853px;
 }
 
 .feed_container>div:nth-child(odd){
-   background-color:#333;
+	background-color:#333;
 }

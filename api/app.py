@@ -12,7 +12,7 @@ app = Flask(__name__, static_url_path='')
 def root():
     return app.send_static_file('index.html')
 
-@app.route("api/summary")
+@app.route("/api/summary")
 def summary():
     # 1st Half
     url = "http://conu.astuce.media/api/sports/football/events.json?event=181b6efc9d744b99a905a80f013d0fc9&LevelOfDetail=high"
