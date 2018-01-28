@@ -106,6 +106,7 @@ def get_videos():
     files = []
     for name in names:
         files.append(name)
+    files.sort()
     rv = {
         "files": files
     }
