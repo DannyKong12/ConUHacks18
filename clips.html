@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Awesome Sports">
+  <meta name="author" content="Awesome Team" >
+  <title>Awesome Sports</title>
+  <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+  <link rel="icon" href="images/favicon.ico">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/master.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+  <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="index.html" class="navbar-brand">AwesomeSports</a>
+    </div>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Main</a></li>
+        <li class="active"><a href="clips.html">Clips</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+   <!-- Page Content -->
+  <div class="container">
+    <div class="row text-left text-lg-left">
+      <form id = "form1" action="javascript:Test()">
+Date : <input type="text" name="FirstName" value="2018-01-13"><br>
+<input type="submit" value="Submit">
+</form>
+      <div class="col-lg-4 col-md-4 col-xs-6" style="margin: 0 2em;">
+        <div class="panel-start", id = "panel-start">
+
+        </div>
+
+        <a class="video-thumbnail-li" href="video.html?id=0">
+          <canvas class="img-thumbnail"></canvas>
+        </a>
+          <video class="video-thumbnail img-thumbnail" controls="controls" preload="metadata">
+            <source src="videos/goal0.mp4" type="video/mp4">
+          </video>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">© 2018 - Awesome Sports</p>
+    </div>
+</div>
+<script type="text/javascript">
+
+  var serverAPI = "http://localhost/sports.gne?jsoncallback=?"
+  $.getJSON( serverAPI, { name: "Time", time: "2pm" } )
+  .done(function( json ) {
+    console.log( "JSON Data: " + json.users[ 3 ].name );
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ", " + error;
+    console.log( "Request Failed: " + err );
+  });
+
+  var date = "2018-01-13"
+
+  function Test(){
+
+  var x = document.getElementById("form1")
+
+  date = x.elements[0].value;
+
+  httpGet();
+  }
+  function httpGet()
+  {
+    url = "http://conu.astuce.media/api/sports/football/events?format=json&Affiliation=17435833f1ed42848320a80f013bbb3f&Season=84f210d08e644c6e89e4a80f013cf46b&Round=78c0b1ccd2ed45609ba2a80f013cf471&LevelOfDetail=medium&StartDateTimeOn=" + date
+    var body = document.getElementsByTagName("games")[0];
+    var tbl = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+    $.ajax({
+      url: url,
+      success: function(result){
+        for(i=0; i < result['Results'].length ; ++i){
+          console.log(result['Results'][i]['Name']);
+            addInput("panel-start",  result['Results'][i]['Name']);
+        }
+      }});
+
+
+  }
+
+  function addInput(divName, name) {
+
+           newdiv = '<div class="panel panel-primary">'+
+                    '<div class="panel-heading">' + name + '</div>' +
+                  '  <div class="panel-body" style="height:200px"> ' +
+
+                    '<a class="video-thumbnail-li" href="video.html?id=1">' +
+                      '<canvas class="img-thumbnail"></canvas>'+
+                    '</a>'
+
+
+
+                      '<video class="video-thumbnail img-thumbnail" controls="controls" preload="metadata">' +
+                        '<source src="videos/goal0.mp4" type="video/mp4">' +
+                      '</video>' +
+
+                  '</div>'+
+                  '</div>' +
+                    '</div>';
+
+           $("#" + divName).append(newdiv);
+
+
+   }
+
+
+
+</script>
+
+  <!-- Load JS at the end -->
+
+
+</body>
+</html>
