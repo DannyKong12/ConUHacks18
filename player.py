@@ -11,7 +11,7 @@ t = requests.get(Team_url)
 data_t = json.loads(t.text)
 
 
-time = '00:03:59'
+time = '00:41:02'
 
 Shots = data['Results'][0]['FootballPlays']
 
@@ -36,7 +36,7 @@ player_url = 'http://conu.astuce.media:9993/api/sports/football/person/stats?Aff
 j = requests.get(player_url)
 data_j = json.loads(j.text)
 
-print(data_j)
+#print(data_j)
 
 
 aaaa = requests.get('http://conu.astuce.media:9993/api/sports/football/person/stats?Coverage=Season&Take=22&Skip=0&affiliation=17435833f1ed42848320a80f013bbb3f&season=84f210d08e644c6e89e4a80f013cf46b&OrderBy=-Goals&format=json')
@@ -44,5 +44,23 @@ aaaa = json.loads(aaaa.text)
 for crap in aaaa['Results']:
 
     if crap['Code']  == Code:
-        print("NIGGA?")
-print(Code)
+        return_file = {
+            "Name" : crap["Name"],
+            "Goal" : crap['Statistics']['Goals'],
+            "Shots" : crap['Statistics']['ShotsTotal'],
+            "ShotsOnTarget" : crap['Statistics']['ShotsOnTarget'],
+            "Goal Precentage " : ( str(crap['Statistics']['Goals'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%"),
+            "On Target Precentage" : (  str(crap['Statistics']['ShotsOnTarget'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%"
+            )
+        }
+        print("Name: "  + (crap["Name"]))
+        print("Goal : " + str(crap['Statistics']['Goals'] ))
+        print("Shots : " + str(crap['Statistics']['ShotsTotal']))
+        print("ShotsOnTarget: " + str(crap['Statistics']['ShotsOnTarget']))
+        print("Goal Precentage " +  str(crap['Statistics']['Goals'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%" )
+        print("On Target Precentage " +  str(crap['Statistics']['ShotsOnTarget'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%" )
+
+
+
+
+print(return_file)
