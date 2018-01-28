@@ -117,7 +117,7 @@
 				for (var i in files) {
 					file = files[i];
 					time = file.split('.')[0].slice(-4).match(/.{1,2}/g).join(':');
-					events_container.append("<div onclick='getVideo(\""+time+"\");'><span id='time"+i+"' class='feed_title'>"+time+" : </span><span class='feed_value'>Goal "+i+"</span><input type='hidden' id='video"+i+"' name='"+time+"' value='videos/"+file+"''></div>");
+					events_container.append("<div class='video_link' onclick='getVideo(\""+time+"\");'><span id='time"+i+"' class='feed_title'>"+time+" : </span><span class='feed_value'>Awesome "+i+"</span><input type='hidden' id='video"+i+"' name='"+time+"' value='videos/"+file+"''></div>");
 					if (i == 0) {
 						console.log( "First video." );
 						getVideo(time);

@@ -1,5 +1,6 @@
 import json
 import requests
+import math
 import os
 
 from flask import Flask, jsonify
@@ -76,26 +77,25 @@ def tate_is_garbage(time):
 
     aaaa = requests.get('http://conu.astuce.media:9993/api/sports/football/person/stats?Coverage=Season&Take=22&Skip=0&affiliation=17435833f1ed42848320a80f013bbb3f&season=84f210d08e644c6e89e4a80f013cf46b&OrderBy=-Goals&format=json')
     aaaa = json.loads(aaaa.text)
-    for crap in aaaa['Results']:
+    for data in aaaa['Results']:
 
-        if crap['Code']  == Code:
+        if data['Code']  == Code:
+            data['Statistics']['Goal Precentage']  = str((data['Statistics']['Goals'] * 100 ) / math.ceil(data['Statistics']['ShotsTotal']))  + "%"
+            data['Statistics']['On Target Precentage']  = str((data['Statistics']['ShotsOnTarget'] * 100 ) / math.ceil(data['Statistics']['ShotsTotal']))  + "%"
             return_file = {
-                "Name" : crap["Name"],
-                "Goal" : crap['Statistics']['Goals'],
-                "Shots" : crap['Statistics']['ShotsTotal'],
-                "ShotsOnTarget" : crap['Statistics']['ShotsOnTarget'],
-                "Goal Precentage " : ( str(crap['Statistics']['Goals'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%"),
-                "On Target Precentage" : (  str(crap['Statistics']['ShotsOnTarget'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%"
-                )
+                "Name" : data["Name"],
+                "Goal" : data['Statistics']['Goals'],
+                "Shots" : data['Statistics']['ShotsTotal'],
+                "ShotsOnTarget" : data['Statistics']['ShotsOnTarget'],
+                "Goal Precentage " : data['Statistics']['Goal Precentage'],
+                "On Target Precentage" : data['Statistics']['On Target Precentage']
             }
-            print("Name: "  + (crap["Name"]))
-            print("Goal : " + str(crap['Statistics']['Goals'] ))
-            print("Shots : " + str(crap['Statistics']['ShotsTotal']))
-            print("ShotsOnTarget: " + str(crap['Statistics']['ShotsOnTarget']))
-            print("Goal Precentage " +  str(crap['Statistics']['Goals'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%" )
-            print("On Target Precentage " +  str(crap['Statistics']['ShotsOnTarget'] / crap['Statistics']['ShotsTotal'] * 100 )+ "%" )
-
-
+            print("Name: "  + (data["Name"]))
+            print("Goal : " + str(data['Statistics']['Goals'] ))
+            print("Shots : " + str(data['Statistics']['ShotsTotal']))
+            print("ShotsOnTarget: " + str(data['Statistics']['ShotsOnTarget']))
+            print("Goal Precentage " +  data['Statistics']['Goal Precentage'])
+            print("On Target Precentage " +  data['Statistics']['On Target Precentage'])
 
     # print(return_file)
     return jsonify(return_file)

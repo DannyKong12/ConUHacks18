@@ -53,3 +53,7 @@ video::-webkit-media-controls-panel {
 .feed_container>div:nth-child(odd){
 	background-color:#333;
 }
+
+.video_link {
+	cursor:pointer;
+}
