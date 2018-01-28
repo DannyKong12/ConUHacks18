@@ -40,29 +40,36 @@ def get_time(m1, m2, s1, s2):
 
 filepath = "./full_match.mp4"
 videoname = "full_match.mp4"
-videoout = "goal1.mp4"
+videoout = "goal"
 
 cap = cv.VideoCapture(filepath)
 counter = 0
 def clip(start, duration=20):
-    while(cap.isOpened()):
+    start_time = list(map(lambda k: (int(k[0]), int(k[1]), int(k[3]), int(k[4])), start))
+    i = 0
+    while i < len(start_time):
+
+      while(cap.isOpened):
         ret, frame = cap.read()
         try:
-            m1 = frame[36:64, 193: 205]
-            m2 = frame[36:64, 204: 217]
-            s1 = frame[36:64, 219: 231]
-            s2 = frame[36:64, 231: 243]
+            m1 = frame[38:62, 193: 205]
+            m2 = frame[38:62, 204: 217]
+            s1 = frame[38:62, 220: 232]
+            s2 = frame[38:62, 231: 243]
             current = int(cap.get(0)/1000)
             time = get_time(m1, m2, s1, s2)
-            start_time = (int(start[0]), int(start[1]), int(start[3]), int(start[4]))
             a = "00:"+str(np.floor_divide(current, 60)).zfill(2)+":"+str(current%60)
-            print(time, current, start_time, time==start_time)
-            if time == start_time:
+
+            print(time, current, start_time, time==currentC)
+            if time in start_time:
                 counter+=1
-                if counter == 5:
-                    subprocess.run(["ffmpeg", "-ss", a, "-i", videoname, "-c", "copy", "-t", str(duration), videoout])
+                if counter == 3:
+                    subprocess.run(["ffmpeg", "-ss", a, "-i", videoname, "-c", "copy", "-t", str(duration), videoout + str(time[0]) +str(time[1]) + str(time[2]) + str(time[3]) + ".mp4"])
                     print("You finally did it you dumbass fuck")
-                    break
+                    i += 1
+
+                    if (i >= len(start_time)):
+                        break
             else:
                 counter = 0
         except Exception as e:
@@ -70,4 +77,4 @@ def clip(start, duration=20):
             print("you actual fucking autist jesus christ")
             break
 
-clip("08:36")
+clip((["08:41", "40:00","02:54","14:23","22:23","30:15","30:48","33:59","37:45","38:24","39:95","43:38"]))
