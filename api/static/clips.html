@@ -80,28 +80,17 @@
 </div>
 <script type="text/javascript">
 
-<!--
-  var serverAPI = "http://localhost/sports.gne?jsoncallback=?"
-  $.getJSON( serverAPI, { name: "Time", time: "2pm" } )
-  .done(function( json ) {
-    console.log( "JSON Data: " + json.users[ 3 ].name );
-  })
-  .fail(function( jqxhr, textStatus, error ) {
-    var err = textStatus + ", " + error;
-    console.log( "Request Failed: " + err );
-  });
-
   var date = "2018-01-13"
+  httpGet();
 
   function Test(){
 
 
   var x = document.getElementById("form1")
-alert(x);
-console.log(x);
 
   date = x['value'];
 
+  $("#panel-start").empty();
 
   httpGet();
   }
@@ -133,8 +122,6 @@ console.log(x);
                     '<a class="video-thumbnail-li" href="video.html?id=1">' +
                       '<canvas class="img-thumbnail"></canvas>'+
                     '</a>'
-
-
 
                       '<video class="video-thumbnail img-thumbnail" controls="controls" preload="metadata">' +
                         '<source src="videos/goal0.mp4" type="video/mp4">' +
