@@ -74,6 +74,50 @@
       <p class="navbar-text pull-left">© 2018 - Awesome Sports</p>
     </div>
 </div>
+<script type="text/javascript">
+
+<!-- Load JS at the end -->
+<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+<script>
+
+  var serverAPI = "http://localhost/sports.gne?jsoncallback=?"
+  $.getJSON( serverAPI, { name: "Time", time: "2pm" } )
+  .done(function( json ) {
+    console.log( "JSON Data: " + json.users[ 3 ].name );
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ", " + error;
+    console.log( "Request Failed: " + err );
+  });
+
+  date = "2018-01-13"
+  url = "http://conu.astuce.media/api/sports/football/events?format=json&Affiliation=17435833f1ed42848320a80f013bbb3f&Season=84f210d08e644c6e89e4a80f013cf46b&Round=78c0b1ccd2ed45609ba2a80f013cf471&LevelOfDetail=medium&StartDateTimeOn=" + date
+
+  function httpGet(url_link)
+  {
+    var body = document.getElementsByTagName("games")[0];
+    var tbl = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+    $.ajax({
+      url: url_link,
+      success: function(result){
+        for(i=0; i < result['Results'].length ; ++i){
+          console.log(result['Results'][i]['Name']);
+          var cellText = document.createTextNode(result['Results'][i]['Name']);
+          var cell = document.createElement("td");
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        }
+      }});
+
+
+  }
+
+
+  httpGet(url);
+</script>
 
   <!-- Load JS at the end -->
   <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
