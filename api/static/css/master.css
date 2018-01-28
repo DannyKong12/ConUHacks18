@@ -57,3 +57,8 @@ video::-webkit-media-controls-panel {
 .video_link {
 	cursor:pointer;
 }
+
+
+.right_bar {
+	width: 760px;
+}

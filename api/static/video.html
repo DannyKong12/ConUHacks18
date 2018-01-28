@@ -58,7 +58,7 @@
 				</div>
 			</div>
 			<div class="col-sm-2 col-lg-6">
-				<div id="events_container" class="feed_container pull-right"></div>
+				<div id="events_container" class="feed_container pull-right right_bar"></div>
 			</div>
 		</div>
 
@@ -83,23 +83,25 @@
 				//var videoAPIURL = "/api/video/00:"+time;
 				// There seems to be a problem with the API so I am hardcoding the time to be a constant working value.
 				var videoAPIURL = "/api/video/00:41:02";
-				$.getJSON( videoAPIURL )
-				.done(function( json ) {
-					var titles = Object.keys(json);
-					var title = "";
-					var feed_container = $("#feed_container");
-					feed_container.empty();
-					for (var i in titles) {
-						title = titles[i];
-						feed_container.append("<div><span class='feed_title'>"+title+" : </span><span class='feed_value'>"+json[title]+"</span></div>");
-					}
-					videocontainer = $("#video");
-					videosource = $("#videosource");
-					videosource.attr('src', videoURL);
-    				videocontainer[0].load();
-    				videocontainer[0].play();
-					console.log( "Feed successful.");
-				})
+				var feed_container = $("#feed_container");
+				feed_container.empty();
+				if (time == "41:02") {
+						$.getJSON( videoAPIURL )
+						.done(function( json ) {
+						var titles = Object.keys(json);
+						var title = "";
+						for (var i in titles) {
+							title = titles[i];
+							feed_container.append("<div><span class='feed_title'>"+title+" : </span><span class='feed_value'>"+json[title]+"</span></div>");
+							}
+						videocontainer = $("#video");
+						videosource = $("#videosource");
+						videosource.attr('src', videoURL);
+	    				videocontainer[0].load();
+	    				videocontainer[0].play();
+						console.log( "Feed successful.");
+					})
+				}
 				.fail(function( jqxhr, textStatus, error ) {
 					var err = textStatus + ", " + error;
 					console.log( "Request Failed: " + err );
