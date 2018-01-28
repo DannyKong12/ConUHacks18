@@ -4,13 +4,12 @@ import requests
 from flask import Flask, jsonify
 
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__, static_url_path='')
 
 
 @app.route("/")
-def home():
-    return "Daddy's home"
-
+def root():
+    return app.send_static_file('index.html')
 
 @app.route("/summary")
 def summary():
