@@ -65,7 +65,6 @@ def clip(start, duration=20):
                 counter+=1
                 if counter == 3:
                     subprocess.run(["ffmpeg", "-ss", a, "-i", videoname, "-c", "copy", "-t", str(duration), videoout + str(time[0]) +str(time[1]) + str(time[2]) + str(time[3]) + ".mp4"])
-                    print("You finally did it you dumbass fuck")
                     i += 1
 
                     if (i >= len(start_time)):
@@ -74,7 +73,6 @@ def clip(start, duration=20):
                 counter = 0
         except Exception as e:
             print(e)
-            print("you actual fucking autist jesus christ")
             break
 
 clip((["08:41", "40:00","02:54","14:23","22:23","30:15","30:48","33:59","37:45","38:24","39:95","43:38"]))
