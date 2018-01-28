@@ -29,7 +29,7 @@ def summary():
     }
     return jsonify(rv)
 
-@app.route("/api/<time>")
+@app.route("/stupid_tate")
 def tate_is_garbage(time='00:41:02'):
     r = requests.get('http://conu.astuce.media/api/sports/football/events.json?event=181b6efc9d744b99a905a80f013d0fc9&LevelOfDetail=high')
     data = json.loads(r.text)
