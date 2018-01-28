@@ -7,7 +7,8 @@
   <meta name="description" content="Awesome Sports">
   <meta name="author" content="Awesome Team" >
   <title>Awesome Sports</title>
-
+  <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
   <link rel="icon" href="images/favicon.ico">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/master.css" rel="stylesheet">
@@ -46,10 +47,16 @@
 
    <!-- Page Content -->
   <div class="container">
+    <div class="row text-left text-lg-left">
 
-    <div class="row text-center text-lg-left">
+      <div class="col-lg-4 col-md-4 col-xs-6" style="margin: 0 2em;">
+        <div class="panel-start", id = "panel-start">
 
-      <div class="col-lg-3 col-md-4 col-xs-6">
+        </div>
+        <div class="panel panel-primary">
+      <div class="panel-heading">Panel with panel-primary class</div>
+      <div class="panel-body">Panel Content</div>
+    </div>
         <a class="video-thumbnail-li" href="video.html?id=0">
           <canvas class="img-thumbnail"></canvas>
         </a>
@@ -57,7 +64,7 @@
             <source src="videos/goal0.mp4" type="video/mp4">
           </video>
       </div>
-      <div class="col-lg-3 col-md-4 col-xs-6">
+      <div class="col-lg-4 col-md-4 col-xs-6" style="margin: 0 2em;">
         <a class="video-thumbnail-li" href="video.html?id=1">
           <canvas class="img-thumbnail"></canvas>
         </a>
@@ -75,12 +82,6 @@
     </div>
 </div>
 <script type="text/javascript">
-
-<!-- Load JS at the end -->
-<script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="js/libs/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-<script>
 
   var serverAPI = "http://localhost/sports.gne?jsoncallback=?"
   $.getJSON( serverAPI, { name: "Time", time: "2pm" } )
@@ -105,10 +106,9 @@
       success: function(result){
         for(i=0; i < result['Results'].length ; ++i){
           console.log(result['Results'][i]['Name']);
-          var cellText = document.createTextNode(result['Results'][i]['Name']);
-          var cell = document.createElement("td");
-          cell.appendChild(cellText);
-          row.appendChild(cell);
+          var domElement = document.createElement("<div class= 'panel panel-primary'>")
+      
+          $('#panel-start').appendChildren(domElement);
         }
       }});
 
@@ -117,12 +117,11 @@
 
 
   httpGet(url);
+  addInput("crap");
 </script>
 
   <!-- Load JS at the end -->
-  <script type="text/javascript" src="js/libs/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/libs/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+
 
 </body>
 </html>
