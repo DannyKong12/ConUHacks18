@@ -1,5 +1,6 @@
 import json
 import requests
+import os
 
 from flask import Flask, jsonify
 
@@ -11,7 +12,7 @@ app = Flask(__name__, static_url_path='')
 def root():
     return app.send_static_file('index.html')
 
-@app.route("/summary")
+@app.route("api/summary")
 def summary():
     # 1st Half
     url = "http://conu.astuce.media/api/sports/football/events.json?event=181b6efc9d744b99a905a80f013d0fc9&LevelOfDetail=high"
@@ -29,8 +30,8 @@ def summary():
     }
     return jsonify(rv)
 
-@app.route("/stupid_tate")
-def tate_is_garbage(time='00:41:02'):
+@app.route("/api/video/<time>")
+def tate_is_garbage(time):
     r = requests.get('http://conu.astuce.media/api/sports/football/events.json?event=181b6efc9d744b99a905a80f013d0fc9&LevelOfDetail=high')
     data = json.loads(r.text)
 
@@ -98,3 +99,15 @@ def tate_is_garbage(time='00:41:02'):
 
     # print(return_file)
     return jsonify(return_file)
+
+@app.route('/api/videos')
+def get_videos():
+    names = os.listdir(os.path.join(app.static_folder, 'videos'))
+    files = []
+    for name in names:
+        files.append(name)
+    rv = {
+        "files": files
+    }
+    return jsonify(rv)
+
